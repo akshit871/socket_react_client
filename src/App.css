@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.card1 .MuiInputBase-input .MuiOutlinedInput-input {
+  font-size: 37px;
+  font-weight: 800;
+  font-size: 40px;
+  font-weight: 600;
+  background-color: palegreen;
+}

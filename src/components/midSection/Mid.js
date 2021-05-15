@@ -9,13 +9,13 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   yesbtn: {
     "& svg": {
-      fontSize: "2em",
+      fontSize: "1.5em",
     },
     color: "palegreen",
   },
   nobtn: {
     "& svg": {
-      fontSize: "2em",
+      fontSize: "1.5em",
     },
     color: "red",
   },
@@ -48,7 +48,7 @@ export const Mid = ({
   const classes = useStyles();
 
   const [laserdt, setlaserdt] = useState(() => {
-    return laser ? laser : "asdfghjklqwertyuiopz";
+    return laser ? laser : Array(31).fill("Z").join("");
   });
   const [scannerdt, setscannerdt] = useState(() => {
     return scanner ? scanner : "";
@@ -106,12 +106,12 @@ export const Mid = ({
             size="medium"
             value={laserdt}
             fullWidth
-            inputProps={{ style: { fontSize: 40, fontWeight: 800 } }} // font size of input text.
+            inputProps={{ style: { fontSize: 40, fontWeight: 600 } }} // font size of input text.
             // InputLabelProps={{style: {fontSize: 40}}} // font size of input label.
             className={`${laserdt ? style.laser : ""}`}
           />
         </div>
-        <div className={`${style.card1} ${style.lefter}`}>
+        <div className={`${style.card1}`}>
           <div className={style.heading_card}>
             <label style={{ marginTop: "10px", marginBottom: "10px" }}>
               <strong>SCANNER</strong>
@@ -136,13 +136,13 @@ export const Mid = ({
             size="medium"
             value={scannerdt}
             fullWidth
-            inputProps={{ style: { fontSize: 40, fontWeight: 800 } }} // font size of input text.
-            // InputLabelProps={{style: {fontSize: 40}}} // font size of input label.
+            inputProps={{ style: { fontSize: 40, fontWeight: 600 } }} // font size of input text.
+            // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
             className={`${scannerdt ? style.laser : ""} laser`}
           />
         </div>
       </div>
-      <div className={style.card3}>
+      <div className={style.card4}>
         <div className={style.card1}>
           <div className={style.heading_card}>
             <label style={{ marginTop: "10px", marginBottom: "10px" }}>
@@ -167,8 +167,8 @@ export const Mid = ({
             size="medium"
             value={mnlscanner}
             fullWidth
-            inputProps={{ style: { fontSize: 40, fontWeight: 800 } }} // font size of input text.
-            // InputLabelProps={{style: {fontSize: 40}}} // font size of input label.
+            inputProps={{ style: { fontSize: 30, fontWeight: 600 } }} // font size of input text.
+            // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
             className={`${scannerdt ? style.laser : ""} laser`}
           />
         </div>
@@ -196,14 +196,14 @@ export const Mid = ({
             size="medium"
             value={psno}
             fullWidth
-            inputProps={{ style: { fontSize: 40, fontWeight: 800 } }} // font size of input text.
-            // InputLabelProps={{style: {fontSize: 40}}} // font size of input label.
+            inputProps={{ style: { fontSize: 30, fontWeight: 600 } }} // font size of input text.
+            // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
             className={`${scannerdt ? style.laser : ""} laser`}
           />
         </div>
       </div>
 
-      <div className={style.card3}>
+      <div className={style.card4}>
         <div
           className={`${style.okheading_card} ${style.okcard} ${
             ok ? style.green : ""

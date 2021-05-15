@@ -19,8 +19,8 @@
   /* } */
 }
 .parent {
-  width: 900px;
-  height: 500px;
+  width: 1200px;
+  height: 550px;
   border: 3px dashed grey;
   border-radius: 10px;
   margin-top: 20px;
@@ -40,18 +40,18 @@
 }
 .okheading_card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   align-content: center;
   align-items: center;
 }
 .card1 {
   width: inherit;
-  font-size: 35px;
+  font-size: 20px;
   font-weight: 900;
 }
 .okcard {
-  padding: 10px;
+  padding: 5px;
   border-radius: 20px;
   margin-top: 20px;
   width: inherit;
@@ -59,7 +59,7 @@
   font-weight: 600;
 }
 .nokcard {
-  padding: 10px;
+  padding: 5px;
   border-radius: 20px;
   margin-top: 20px;
   width: inherit;
@@ -71,6 +71,12 @@
   height: 60;
 }
 .card3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+}
+.card4 {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

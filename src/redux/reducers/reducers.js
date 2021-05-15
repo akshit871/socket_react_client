@@ -114,6 +114,32 @@ const entryRd = (state = initialETState, { type, payload }) => {
   }
 };
 
+//row reducer
+const initialRW = {
+  rows: [],
+};
+const rowRd = (state = initialRW, { type, payload }) => {
+  switch (type) {
+    case types.UPDATE_ROW:
+      if (state.rows.length == 50) {
+        let rowsNew = [...state.rows];
+        rowsNew.shift();
+        rowsNew.push(payload);
+        return {
+          ...state,
+          rows: rowsNew,
+        };
+      } else {
+        return {
+          ...state,
+          rows: state.rows.push(payload),
+        };
+      }
+    default:
+      return state;
+  }
+};
+
 // COMBINED REDUCERS
 const reducers = {
   // counter: counterReducer,
@@ -121,6 +147,7 @@ const reducers = {
 
   bushRd,
   entryRd,
+  rowRd,
 };
 
 export default combineReducers(reducers);

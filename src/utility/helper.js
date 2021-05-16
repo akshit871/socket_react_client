@@ -7,3 +7,15 @@ export const dateGet = () => {
   //   let folderName = `../../Documents/laserNEW/${year}/${month}`;
   return dt;
 };
+
+export const getCurTime = () => {
+  var time = new Date();
+  // console.log(
+  return time.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  });
+  // );
+};

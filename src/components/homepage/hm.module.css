@@ -1,7 +1,7 @@
 .gridParent {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-content: center;
   padding: 10px;
 }

@@ -263,7 +263,7 @@ export const Mid = ({
 
 const mapStateToProps = (state) => ({
   laser: state.entryRd["laser_done"] ? state.entryRd["Laser Data"] : null,
-  scanner: state.entryRd["scanner_done"] ? state.entryRd["Scanner data"] : null,
+  scanner: state.entryRd["scanner_done"] ? state.entryRd["Scanner Data"] : null,
   dot: state.entryRd["DOT Matrix Data"],
   part_sno: state.entryRd["Part Sno"],
   okf: state.entryRd["Result"] == true ? "OK" : null,

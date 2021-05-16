@@ -8,3 +8,4 @@ export const UPDATE_LSMG = "UPDATE_LSMG";
 export const BUSH_D = "BUSH_D";
 export const UPDATE_STORE = "UPDATE_STORE";
 export const UPDATE_ROW = "UPDATE_ROW";
+export const LOGIN = "LOGIN";

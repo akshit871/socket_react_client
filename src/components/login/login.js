@@ -9,28 +9,94 @@ import {
 import Homepage from "../homepage/homepage";
 import { connect } from "react-redux";
 import styles from "./login.module.css";
-import { Button, Paper, TextField } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+} from "@material-ui/core";
 
-function Login() {
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+function Login({ fillStore = () => {} }) {
+  const classes = useStyles();
   const [lg, setlg] = useState(false);
+  const [model, setmodel] = useState("");
+  const [u, setu] = useState("");
+  const [p, setp] = useState("");
+
+  const handleChange = (e) => {
+    console.log({ o: e.target });
+    let v = e.target.value;
+    setmodel(v);
+  };
+
   const handleSignIn = () => {
+    fillStore({ user: u, model: model });
     setlg(true);
   };
+
   if (lg) {
     console.log({ redirect: true }, "going...");
     return <Redirect to="/rico_homePage" />;
   }
+
   return (
     <div className={styles.parent}>
       <div className={styles.login_form}>
         <h1>LOGIN</h1>
-        <TextField id="outlined-basic89" label="USERNAME" variant="outlined" />
         <TextField
+          value={u}
+          id="outlined-basic89"
+          label="USERNAME"
+          variant="outlined"
+          onChange={(e) => {
+            setu(e.target.value);
+          }}
+        />
+        <TextField
+          value={p}
           id="outlined-basic90"
           type="password"
           label="PASSWORD"
           variant="outlined"
+          onChange={(e) => {
+            setp(e.target.value);
+          }}
         />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">
+            M/C Model
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={model}
+            onChange={handleChange}
+            label="Select Machine Model"
+          >
+            <MenuItem value={0}>
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={`Model1`}>Model1</MenuItem>
+            <MenuItem value={"Model2"}>Model2</MenuItem>
+            <MenuItem value={"Model3"}>Model3</MenuItem>
+            <MenuItem value={"Model4"}>Model4</MenuItem>
+            <MenuItem value={"Model5"}>Model5</MenuItem>
+          </Select>
+        </FormControl>
         <Button variant="outlined" color="primary" onClick={handleSignIn}>
           Sign In
         </Button>
@@ -45,7 +111,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     bushDone: (data) => dispatch({ type: "BUSH_D", payload: data }),
-    fillStore: (data) => dispatch({ type: "UPDATE_STORE", payload: data }),
+    fillStore: (data) => dispatch({ type: "LOGIN", payload: data }),
   };
 };
 

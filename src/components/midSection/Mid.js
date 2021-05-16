@@ -109,8 +109,8 @@ export const Mid = ({
             size="medium"
             value={laserdt}
             fullWidth
-            inputProps={{ style: { fontSize: 40, fontWeight: 600 } }} // font size of input text.
-            // InputLabelProps={{style: {fontSize: 40}}} // font size of input label.
+            inputProps={{ style: { fontSize: 35, fontWeight: 600 } }} // font size of input text.
+            // InputLabelProps={{style: {fontSize: 35}}} // font size of input label.
             className={`${laserdt ? style.laser : ""}`}
           />
         </div>
@@ -142,7 +142,7 @@ export const Mid = ({
             size="medium"
             value={scannerdt}
             fullWidth
-            inputProps={{ style: { fontSize: 40, fontWeight: 600 } }} // font size of input text.
+            inputProps={{ style: { fontSize: 35, fontWeight: 600 } }} // font size of input text.
             // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
             className={`${scannerdt ? style.laser : ""} laser`}
           />
@@ -221,7 +221,7 @@ export const Mid = ({
             ok ? style.green : ""
           }`}
         >
-          <label style={{ marginTop: "10px", marginBottom: "10px" }}>
+          <label style={{ marginTop: "5px" }}>
             <strong>Marked OK</strong>
           </label>
           {ok && (

@@ -139,6 +139,23 @@ const rowRd = (state = initialRW, { type, payload }) => {
       return state;
   }
 };
+//row reducer
+const initialLd = {
+  user: "",
+  model: "",
+};
+const loginRd = (state = initialLd, { type, payload }) => {
+  switch (type) {
+    case types.LOGIN:
+      return {
+        ...state,
+        user: payload.user,
+        model: payload.model,
+      };
+    default:
+      return state;
+  }
+};
 
 // COMBINED REDUCERS
 const reducers = {
@@ -148,6 +165,7 @@ const reducers = {
   bushRd,
   entryRd,
   rowRd,
+  loginRd,
 };
 
 export default combineReducers(reducers);

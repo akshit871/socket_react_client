@@ -18,16 +18,15 @@ function App() {
   return (
     <Router>
       <div>
-        <Login />
         <Switch>
           <Route path="/rico_homePage">
             <Homepage />
           </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
           <Route path="/admin">
             <Admin />
+          </Route>
+          <Route path="/">
+            <Login />
           </Route>
         </Switch>
       </div>

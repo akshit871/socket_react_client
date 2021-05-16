@@ -21,32 +21,21 @@ function Login() {
     return <Redirect to="/rico_homePage" />;
   }
   return (
-    <Router>
-      <div className={styles.parent}>
-        <div className={styles.login_form}>
-          <h1>LOGIN</h1>
-          <TextField
-            id="outlined-basic89"
-            label="USERNAME"
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-basic90"
-            type="password"
-            label="PASSWORD"
-            variant="outlined"
-          />
-          <Button variant="outlined" color="primary" onClick={handleSignIn}>
-            Sign In
-          </Button>
-        </div>
-        <Switch>
-          <Route path="/rico_homePage">
-            <Homepage />
-          </Route>
-        </Switch>
+    <div className={styles.parent}>
+      <div className={styles.login_form}>
+        <h1>LOGIN</h1>
+        <TextField id="outlined-basic89" label="USERNAME" variant="outlined" />
+        <TextField
+          id="outlined-basic90"
+          type="password"
+          label="PASSWORD"
+          variant="outlined"
+        />
+        <Button variant="outlined" color="primary" onClick={handleSignIn}>
+          Sign In
+        </Button>
       </div>
-    </Router>
+    </div>
   );
 }
 

@@ -100,9 +100,12 @@ export const Mid = ({
             )}
           </div>
           <TextField
-            id="outlined-basic1"
+            id="outlined-basic123"
             variant="outlined"
             autoComplete="off"
+            InputProps={{
+              readOnly: true,
+            }}
             size="medium"
             value={laserdt}
             fullWidth
@@ -130,9 +133,12 @@ export const Mid = ({
             )}
           </div>
           <TextField
-            id="outlined-basic1"
+            id="outlined-basic134"
             variant="outlined"
             autoComplete="off"
+            InputProps={{
+              readOnly: true,
+            }}
             size="medium"
             value={scannerdt}
             fullWidth
@@ -161,9 +167,12 @@ export const Mid = ({
             )}
           </div>
           <TextField
-            id="outlined-basic1"
+            id="outlined-basic156"
             variant="outlined"
             autoComplete="off"
+            InputProps={{
+              readOnly: true,
+            }}
             size="medium"
             value={mnlscanner}
             fullWidth
@@ -190,9 +199,12 @@ export const Mid = ({
             )}
           </div>
           <TextField
-            id="outlined-basic1"
+            id="outlined-basic121"
             variant="outlined"
             autoComplete="off"
+            InputProps={{
+              readOnly: true,
+            }}
             size="medium"
             value={psno}
             fullWidth

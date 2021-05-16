@@ -44,8 +44,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const ManulEntry = ({
   bush,
+  user = "",
+  model = "",
   bushDone = () => {},
   fillStore = () => {},
+  fillRows = () => {},
 }) => {
   const [open, setopen] = useState(false);
   const [mcd, setmcd] = useState("");
@@ -63,14 +66,13 @@ export const ManulEntry = ({
       fillStore({}); //emptying midsection before call
       const socket = socketIOClient(ENDPOINT);
       socket.emit("mnl_entry", {
-        operator_name: "raman",
+        operator_name: user,
         machine_date: mcd,
         machine_no: mcn,
         part_sno: psno,
         bushIV_no: bush ? bin : "",
         bushIV_dt: bush ? bid : "",
-        model: "model1",
-        shift: "A",
+        model: model ? model : "model1",
       });
       socket.on("processDone", (data) => {
         console.log({ data });
@@ -81,6 +83,7 @@ export const ManulEntry = ({
         setbin("");
         setbid("");
         fillStore(data);
+        fillRows(data);
       });
     } else {
       seterr("Please enter the details first");
@@ -214,11 +217,14 @@ export const ManulEntry = ({
 
 const mapStateToProps = (state) => ({
   bush: state.bushRd.bush,
+  user: state.loginRd.user,
+  model: state.loginRd.model,
 });
 const mapDispatchToProps = (dispatch) => {
   return {
     bushDone: (data) => dispatch({ type: "BUSH_D", payload: data }),
     fillStore: (data) => dispatch({ type: "UPDATE_STORE", payload: data }),
+    fillRows: (data) => dispatch({ type: "UPDATE_ROW", payload: data }),
   };
 };
 

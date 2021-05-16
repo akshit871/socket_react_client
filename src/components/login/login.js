@@ -90,11 +90,11 @@ function Login({ fillStore = () => {} }) {
             <MenuItem value={0}>
               <em>None</em>
             </MenuItem>
-            <MenuItem value={`Model1`}>Model1</MenuItem>
-            <MenuItem value={"Model2"}>Model2</MenuItem>
-            <MenuItem value={"Model3"}>Model3</MenuItem>
-            <MenuItem value={"Model4"}>Model4</MenuItem>
-            <MenuItem value={"Model5"}>Model5</MenuItem>
+            <MenuItem value={`model1`}>Model1</MenuItem>
+            <MenuItem value={"model2"}>Model2</MenuItem>
+            <MenuItem value={"model3"}>Model3</MenuItem>
+            <MenuItem value={"model4"}>Model4</MenuItem>
+            <MenuItem value={"model5"}>Model5</MenuItem>
           </Select>
         </FormControl>
         <Button variant="outlined" color="primary" onClick={handleSignIn}>

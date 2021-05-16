@@ -8,6 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import { connect } from "react-redux";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -138,248 +139,31 @@ function createData(
   };
 }
 
-const rows = [
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-  createData(
-    1,
-    "12/10/1987",
-    1,
-    2345,
-    Array(31).fill("Z").join(""),
-    Array(31).fill("Z").join(""),
-    Array(12).fill("L").join(""),
-    "OK",
-    "pawan",
-    "2:34 PM",
-    "12/23/2021",
-    Array(7).fill("Z").join(""),
-    234,
-    "12/23/2021"
-  ),
-];
+const rowsFormatter = (rows = []) => {
+  let formtedrows = [];
+
+  rows.forEach((x, i) => {
+    let y = createData(
+      x["SNo"],
+      x["M/C Date"],
+      x["M/C No"],
+      x["Part Sno"],
+      x["Laser Data"],
+      x["Scanner Data"],
+      x["DOT Matrix Data"],
+      x["Result"] == true ? "OK" : "NG",
+      x["Operator"],
+      x["Time"],
+      x["Date"],
+      x["Model"],
+      x["BI No"],
+      x["BI Date"]
+    );
+    formtedrows.push(y);
+  });
+
+  return formtedrows;
+};
 
 const useStyles = makeStyles({
   root: {
@@ -394,10 +178,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+function StickyHeadTable({ rows = [] }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const rowsUpadted = rowsFormatter(rows);
+  console.log({ rows }, { rowsUpadted });
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -426,29 +212,30 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={`uiu${index}`}
-                  >
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {rowsUpadted.length &&
+              rowsUpadted
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, index) => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={`uiu${index}`}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -464,3 +251,14 @@ export default function StickyHeadTable() {
     </Paper>
   );
 }
+const mapStateToProps = (state) => ({
+  rows: state.rowRd.rows,
+});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    bushDone: (data) => dispatch({ type: "BUSH_D", payload: data }),
+    fillStore: (data) => dispatch({ type: "UPDATE_STORE", payload: data }),
+    fillRows: (data) => dispatch({ type: "UPDATE_ROW", payload: data }),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(StickyHeadTable);

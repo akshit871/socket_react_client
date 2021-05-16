@@ -130,9 +130,13 @@ const rowRd = (state = initialRW, { type, payload }) => {
           rows: rowsNew,
         };
       } else {
+        console.log("here1");
+        let newRows = [...state.rows];
+        newRows.push(payload);
+        console.log({ r2: newRows });
         return {
           ...state,
-          rows: state.rows.push(payload),
+          rows: newRows,
         };
       }
     default:

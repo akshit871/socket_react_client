@@ -48,7 +48,7 @@ export const Mid = ({
   const classes = useStyles();
 
   const [laserdt, setlaserdt] = useState(() => {
-    return laser ? laser : Array(31).fill("Z").join("");
+    return laser ? laser : "";
   });
   const [scannerdt, setscannerdt] = useState(() => {
     return scanner ? scanner : "";
@@ -57,10 +57,10 @@ export const Mid = ({
     return dot ? dot : "";
   });
   const [ok, setok] = useState(() => {
-    return okf ? okf : "sd";
+    return okf ? okf : "";
   });
   const [nok, setnok] = useState(() => {
-    return nokf ? nokf : "sd";
+    return nokf ? nokf : "";
   });
   const [psno, setpsno] = useState(() => {
     return part_sno ? part_sno : "";
@@ -176,7 +176,7 @@ export const Mid = ({
             size="medium"
             value={mnlscanner}
             fullWidth
-            inputProps={{ style: { fontSize: 30, fontWeight: 600 } }} // font size of input text.
+            inputProps={{ style: { fontSize: 30, fontWeight: 500 } }} // font size of input text.
             // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
             className={`${scannerdt ? style.laser : ""} laser`}
           />
@@ -262,7 +262,13 @@ export const Mid = ({
 };
 
 const mapStateToProps = (state) => ({
-  bush: state.bushRd.bush,
+  laser: state.entryRd["laser_done"] ? state.entryRd["Laser Data"] : null,
+  scanner: state.entryRd["scanner_done"] ? state.entryRd["Scanner data"] : null,
+  dot: state.entryRd["DOT Matrix Data"],
+  part_sno: state.entryRd["Part Sno"],
+  okf: state.entryRd["Result"] == true ? "OK" : null,
+  nokf: state.entryRd["Result"] == false ? "NOK" : null,
+  machine_no: state["M/C No"],
 });
 
 const mapDispatchToProps = (dispatch) => {

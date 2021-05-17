@@ -72,7 +72,6 @@ export const ManulEntry = ({
         part_sno: psno,
         bushIV_no: bush ? bin : "",
         bushIV_dt: bush ? bid : "",
-        model: model ? model : "model1",
       });
       socket.on("processDone", (data) => {
         console.log({ data });
@@ -84,6 +83,7 @@ export const ManulEntry = ({
         setbid("");
         fillStore(data);
         fillRows(data);
+        socket.disconnect();
       });
     } else {
       seterr("Please enter the details first");

@@ -161,6 +161,22 @@ const loginRd = (state = initialLd, { type, payload }) => {
   }
 };
 
+//hardware reducer
+const init = {
+  id: "",
+};
+const hwRd = (state = init, { type, payload }) => {
+  switch (type) {
+    case types.HID:
+      return {
+        ...state,
+        id: payload,
+      };
+    default:
+      return state;
+  }
+};
+
 // COMBINED REDUCERS
 const reducers = {
   // counter: counterReducer,
@@ -170,6 +186,7 @@ const reducers = {
   entryRd,
   rowRd,
   loginRd,
+  hwRd,
 };
 
 export default combineReducers(reducers);

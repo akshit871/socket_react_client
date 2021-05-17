@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +10,9 @@ import Homepage from "../homepage/homepage";
 import { connect } from "react-redux";
 import styles from "./login.module.css";
 import {
+  Backdrop,
   Button,
+  CircularProgress,
   FormControl,
   InputLabel,
   makeStyles,
@@ -19,6 +21,8 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://127.0.0.1:4001";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -28,10 +32,16 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 3,
+    color: "#fff",
+  },
 }));
 
-function Login({ fillStore = () => {} }) {
+function Login({ hid = "", fillStore = () => {}, fillHid = () => {} }) {
   const classes = useStyles();
+  const [open, setopen] = useState(false);
+
   const [lg, setlg] = useState(false);
   const [model, setmodel] = useState("");
   const [u, setu] = useState("");
@@ -41,6 +51,16 @@ function Login({ fillStore = () => {} }) {
     console.log({ o: e.target });
     let v = e.target.value;
     setmodel(v);
+    setopen(true);
+    const socket = socketIOClient(ENDPOINT);
+    socket.emit("model_selection", {
+      model: v,
+    });
+    socket.on("model_done", (data) => {
+      console.log({ data });
+      setopen(false);
+      socket.disconnect();
+    });
   };
 
   const handleSignIn = () => {
@@ -101,17 +121,24 @@ function Login({ fillStore = () => {} }) {
           Sign In
         </Button>
       </div>
+      {
+        <Backdrop className={classes.backdrop} open={open} onClick={() => {}}>
+          <CircularProgress color="primary" />
+        </Backdrop>
+      }
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
   bush: state.bushRd.bush,
+  hid: state.hwRd.id,
 });
 const mapDispatchToProps = (dispatch) => {
   return {
     bushDone: (data) => dispatch({ type: "BUSH_D", payload: data }),
     fillStore: (data) => dispatch({ type: "LOGIN", payload: data }),
+    fillHid: (data) => dispatch({ type: "HID", payload: data }),
   };
 };
 

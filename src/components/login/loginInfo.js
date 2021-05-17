@@ -1,8 +1,11 @@
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { dateGet, getCurTime } from "../../utility/helper";
 import styles from "./login.module.css";
+import socketIOClient from "socket.io-client";
+import { Redirect } from "react-router";
+const ENDPOINT = "http://127.0.0.1:4001";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -18,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginInfo = ({ user, model }) => {
   const classes = useStyles();
+  const [redirect, setredirect] = useState(false);
+
+  if (redirect) {
+    console.log({ redirect: true }, "going...");
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className={styles.grandP}>
       <div className={styles.flex_row}>
@@ -34,6 +44,9 @@ const LoginInfo = ({ user, model }) => {
           className={classes.margin}
           variant="outlined"
           color="secondary"
+          onClick={() => {
+            setredirect(true);
+          }}
         >
           LOGOUT
         </Button>

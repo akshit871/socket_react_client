@@ -1,4 +1,4 @@
-import { IconButton, Paper, TextField } from "@material-ui/core";
+import { IconButton, Paper, TextField, withStyles } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import style from "./mid.module.css";
@@ -6,35 +6,55 @@ import CheckCircleOutlineOutlinedIcon from "@material-ui/icons/CheckCircleOutlin
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  yesbtn: {
-    "& svg": {
-      fontSize: "1.5em",
+const useStyles = makeStyles(
+  (theme) => ({
+    yesbtn: {
+      "& svg": {
+        fontSize: "1em",
+      },
+      color: "palegreen",
     },
-    color: "palegreen",
-  },
-  nobtn: {
-    "& svg": {
-      fontSize: "1.5em",
+    nobtn: {
+      "& svg": {
+        fontSize: "1em",
+      },
+      color: "red",
     },
-    color: "red",
-  },
-  yesbtn2: {
-    "& svg": {
+    yesbtn2: {
+      "& svg": {
+        fontSize: "1em",
+      },
+      color: "green",
+    },
+    nobtn2: {
+      "& svg": {
+        fontSize: "1em",
+      },
+      color: "red",
+    },
+    largeIcon: {
       fontSize: "3em",
     },
-    color: "green",
-  },
-  nobtn2: {
-    "& svg": {
-      fontSize: "3em",
+  }),
+  { index: 1 }
+);
+
+const StyledTextField = withStyles((theme) => ({
+  root: {
+    // width: 100,
+    "& .MuiInputBase-root": {
+      color: "black",
+      height: 30,
+      // "& input": {
+      //   textAlign: "center",
+      // },
     },
-    color: "red",
+    "& .MuiFormLabel-root": {
+      color: theme.palette.secondary.main,
+      fontSize: "11px",
+    },
   },
-  largeIcon: {
-    fontSize: "3em",
-  },
-}));
+}))(TextField);
 
 export const Mid = ({
   laser,
@@ -57,10 +77,10 @@ export const Mid = ({
     return dot ? dot : "";
   });
   const [ok, setok] = useState(() => {
-    return okf ? okf : "";
+    return okf ? okf == true : "";
   });
   const [nok, setnok] = useState(() => {
-    return nokf ? nokf : "";
+    return nokf ? nokf == false : "";
   });
   const [psno, setpsno] = useState(() => {
     return part_sno ? part_sno : "";
@@ -85,7 +105,7 @@ export const Mid = ({
       <div className={style.card3}>
         <div className={style.card1}>
           <div className={style.heading_card}>
-            <label style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <label style={{ marginBottom: "1px" }}>
               <strong>LASER</strong>
             </label>
             {laserdt && (
@@ -99,7 +119,7 @@ export const Mid = ({
               </IconButton>
             )}
           </div>
-          <TextField
+          <StyledTextField
             id="outlined-basic123"
             variant="outlined"
             autoComplete="off"
@@ -109,7 +129,7 @@ export const Mid = ({
             size="medium"
             value={laserdt}
             fullWidth
-            inputProps={{ style: { fontSize: 35, fontWeight: 600 } }} // font size of input text.
+            inputProps={{ style: { fontSize: 25, fontWeight: 800 } }} // font size of input text.
             // InputLabelProps={{style: {fontSize: 35}}} // font size of input label.
             className={`${laserdt ? style.laser : ""}`}
           />
@@ -132,7 +152,7 @@ export const Mid = ({
               </IconButton>
             )}
           </div>
-          <TextField
+          <StyledTextField
             id="outlined-basic134"
             variant="outlined"
             autoComplete="off"
@@ -142,7 +162,7 @@ export const Mid = ({
             size="medium"
             value={scannerdt}
             fullWidth
-            inputProps={{ style: { fontSize: 35, fontWeight: 600 } }} // font size of input text.
+            inputProps={{ style: { fontSize: 25, fontWeight: 800 } }} // font size of input text.
             // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
             className={`${scannerdt ? style.laser : ""} laser`}
           />
@@ -166,7 +186,7 @@ export const Mid = ({
               </IconButton>
             )}
           </div>
-          <TextField
+          <StyledTextField
             id="outlined-basic156"
             variant="outlined"
             autoComplete="off"
@@ -198,7 +218,7 @@ export const Mid = ({
               </IconButton>
             )}
           </div>
-          <TextField
+          <StyledTextField
             id="outlined-basic121"
             variant="outlined"
             autoComplete="off"

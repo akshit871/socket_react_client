@@ -4,6 +4,7 @@ import {
   CircularProgress,
   Paper,
   TextField,
+  withStyles,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { connect } from "react-redux";
@@ -17,30 +18,51 @@ import { dateGet } from "../../utility/helper";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:4001";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      height: 140,
+      width: 100,
+    },
+    control: {
+      padding: theme.spacing(2),
+    },
+    txt: {
+      width: "100px",
+      fontSize: "10px",
+    },
+    btn: {
+      alignSelf: "center",
+      fontWeight: "900",
+    },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 3,
+      color: "#fff",
+    },
+  }),
+  { index: 1 }
+);
+
+const StyledTextField = withStyles((theme) => ({
   root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
+    marginLeft: theme.spacing(2),
     width: 100,
+    "& .MuiInputBase-root": {
+      color: theme.palette.primary.main,
+      height: 30,
+      // "& input": {
+      //   textAlign: "center",
+      // },
+    },
+    "& .MuiFormLabel-root": {
+      color: theme.palette.secondary.main,
+      fontSize: "11px",
+    },
   },
-  control: {
-    padding: theme.spacing(2),
-  },
-  txt: {
-    width: "100px",
-    fontSize: "10px",
-  },
-  btn: {
-    alignSelf: "center",
-    fontWeight: "900",
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 3,
-    color: "#fff",
-  },
-}));
+}))(TextField);
 
 export const ManulEntry = ({
   bush,
@@ -56,12 +78,33 @@ export const ManulEntry = ({
   const [psno, setpsno] = useState("");
   const [bin, setbin] = useState("");
   const [bid, setbid] = useState("");
+  const [err, seterr] = useState([]);
 
-  const [err, seterr] = useState("");
   const classes = useStyles();
 
   const handleClickSend = () => {
     if (mcd.length && mcn.length && psno.length) {
+      let curDt = mcd;
+      let err2 = [];
+      if (curDt.length < 6) {
+        err.push("date must be of 6 integers");
+        return;
+      }
+      let dt = new Date().getDate();
+      let month = new Date().getMonth() + 1;
+      let year = new Date().getFullYear().toString().substr(2);
+
+      let t3 = curDt.toString().substr(4, 2);
+
+      if (t3 > year) {
+        err.push("year must be less than current year");
+        return;
+      }
+      if (mcn.toString().length > 2) {
+        err.push("Machine No cant be more than 2 digits");
+        return;
+      }
+
       setopen(true); //loading state true
       fillStore({}); //emptying midsection before call
       const socket = socketIOClient(ENDPOINT);
@@ -96,69 +139,71 @@ export const ManulEntry = ({
     <div className={style.parent}>
       <h3 className={style.hd}>MANUAL ENTRY</h3>
       <div className={style.flexer}>
-        <h5>Machine Date</h5>
-        <TextField
+        <label>Machine Date</label>
+        <StyledTextField
           required
           id="outlined-basic1"
-          label="Machine Date"
           variant="outlined"
-          placeholder="dd/mm/yyyy"
+          placeholder="ddmmyy"
           autoComplete="off"
           value={mcd}
+          size="small"
           onChange={(e) => {
             let inp = e.target.value;
+
             setmcd(inp);
           }}
         />
-        <h5>Machine No</h5>
-        <TextField
+        <label>Machine No</label>
+        <StyledTextField
           required
           id="outlined-basic2"
-          label="Machine No"
           variant="outlined"
           autoComplete="off"
+          placeholder="00"
           value={mcn}
+          size="small"
           onChange={(e) => {
             let inp = e.target.value;
             setmcn(inp);
           }}
         />
-        <h5>Part Serial No</h5>
-        <TextField
+        <label>Part Serial No</label>
+        <StyledTextField
           required
           id="outlined-basic3"
-          label="Part Serial No"
           variant="outlined"
           autoComplete="off"
           value={psno}
+          size="small"
           onChange={(e) => {
             let inp = e.target.value;
             setpsno(inp);
           }}
         />
-        <h5>Bush Invoice No</h5>
-        <TextField
+        <label>Bush Invoice No</label>
+        <StyledTextField
           {...(!bush && { disabled: true })}
           {...(bush && { required: true })}
           id="outlined-basic4"
-          label="Bush Invoice No"
           variant="outlined"
           autoComplete="off"
+          size="small"
           value={bin}
           onChange={(e) => {
             let inp = e.target.value;
             setbin(inp);
           }}
         />
-        <h5>Bush Invoice Date</h5>
-        <TextField
+        <label>Bush Invoice Date</label>
+        <StyledTextField
           {...(bush && { required: true })}
           {...(!bush && { disabled: true })}
           id="outlined-basic5"
-          label="Bush Invoice Date"
           variant="outlined"
-          placeholder="dd/mm/yyyy"
+          placeholder="ddmmyy"
           autoComplete="off"
+          size="small"
           value={bid}
           onChange={(e) => {
             let inp = e.target.value;

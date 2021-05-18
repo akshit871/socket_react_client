@@ -5,9 +5,19 @@ import App from "./App";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import configureStore from "./redux/store";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { BrowserRouter } from "react-router-dom";
 
 const store = configureStore();
-
+const app =(
+  <MuiThemeProvider theme={createMuiTheme}>
+      <Provider store={store}>
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
+      </Provider>
+  </MuiThemeProvider>
+);
 const renderApp = () =>
   render(
     <Provider store={store}>

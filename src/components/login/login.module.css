@@ -21,16 +21,17 @@
 .lCard {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-content: center;
   align-items: center;
-  /* width: 200px; */
   border: 1px solid grey;
   border-radius: 10px;
-  height: 400px;
-  padding: 10px;
-  font-size: 30px;
+  margin-top: 5px;
+  height: 15rem;
+  font-size: 15px;
+  color: white;
   font-weight: 800;
+  background-color: rgb(36, 35, 35);
 }
 .flex_row {
   display: flex;
@@ -38,23 +39,12 @@
   justify-content: space-evenly;
   align-content: center;
 }
-.model {
-  width: 200px;
-  padding: 7px;
-  font-size: 25px;
-  font-weight: 800;
-}
+
 .grandP {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-content: center;
-  align-items: center;
-  width: 300px;
-  height: 450px;
-  border: 3px dashed grey;
-  border-radius: 10px;
-  margin-top: 20px;
-  margin-left: 20px;
-  padding: 5px;
+  width: 10rem;
+  height: 18rem;
 }

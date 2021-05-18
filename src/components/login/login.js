@@ -24,19 +24,22 @@ import {
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:4001";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 3,
-    color: "#fff",
-  },
-}));
+const useStyles = makeStyles(
+  (theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 3,
+      color: "#fff",
+    },
+  }),
+  { index: 1 }
+);
 
 function Login({ hid = "", fillStore = () => {}, fillHid = () => {} }) {
   const classes = useStyles();

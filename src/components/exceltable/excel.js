@@ -165,18 +165,21 @@ const rowsFormatter = (rows = []) => {
   return formtedrows;
 };
 
-const useStyles = makeStyles({
-  root: {
-    width: "99vw",
-    padding: "10px",
+const useStyles = makeStyles(
+  {
+    root: {
+      width: "99vw",
+      padding: "10px",
+    },
+    container: {
+      width: "99%",
+      maxHeight: 440,
+      borderRadius: "20px",
+      border: `1px solid black`,
+    },
   },
-  container: {
-    width: "99%",
-    maxHeight: 440,
-    borderRadius: "20px",
-    border: `1px solid black`,
-  },
-});
+  { index: 1 }
+);
 
 function StickyHeadTable({ rows = [] }) {
   const classes = useStyles();

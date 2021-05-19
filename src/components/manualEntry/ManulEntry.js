@@ -37,6 +37,16 @@ const useStyles = makeStyles(
     btn: {
       alignSelf: "center",
       fontWeight: "900",
+      width: 100,
+      height: 45,
+      fontSize: 12,
+      padding: 5,
+      backgroundColor: "#e6ba23",
+      color: "black",
+      // border: `2px solid black`,
+      borderRadius: 10,
+      boxShadow: `rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px`,
     },
     backdrop: {
       zIndex: theme.zIndex.drawer + 3,
@@ -251,8 +261,9 @@ export const ManulEntry = ({
       <div className={`${style.flexB}`}>
         {bush === true ? (
           <Button
+            id="newB12"
             variant="outlined"
-            color="secondary"
+            color="primary"
             className={classes.btn}
             startIcon={<CheckCircleOutlineOutlinedIcon />}
             onClick={() => {
@@ -263,8 +274,9 @@ export const ManulEntry = ({
           </Button>
         ) : (
           <Button
+            id="newB13"
             variant="outlined"
-            color="secondary"
+            color="primary"
             className={classes.btn}
             startIcon={<CancelOutlinedIcon />}
             onClick={() => {
@@ -276,6 +288,7 @@ export const ManulEntry = ({
         )}
 
         <Button
+          id="newB13"
           variant="outlined"
           color="primary"
           className={classes.btn}

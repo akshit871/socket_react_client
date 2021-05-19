@@ -10,3 +10,4 @@ export const UPDATE_STORE = "UPDATE_STORE";
 export const UPDATE_ROW = "UPDATE_ROW";
 export const LOGIN = "LOGIN";
 export const HID = "HID";
+export const ER = "ER";

@@ -20,14 +20,17 @@
 }
 .parent {
   width: 32rem;
-  height: 25rem;
-  border: 3px dashed grey;
+  height: 16rem;
+  border: 1px solid grey;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-content: center;
   padding: 0px 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .heading_card {
   display: flex;
@@ -38,8 +41,8 @@
 }
 .okheading_card {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-around;
   align-content: center;
   align-items: center;
 }
@@ -51,20 +54,28 @@
 .okcard {
   padding: 5px;
   border-radius: 10px;
-  margin-top: 5px;
-  width: 200px;
-  height: 60px;
+  margin-top: 10px;
+  width: 80px;
+  height: 56px;
   font-size: 15px;
   font-weight: 900;
+  border: 2px groove darkblue;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .nokcard {
   padding: 5px;
   border-radius: 10px;
-  margin-top: 5px;
-  width: 200px;
-  height: 60px;
+  margin-top: 10px;
+  width: 80px;
+  height: 56px;
   font-size: 15px;
   font-weight: 900;
+  border: 2px groove darkblue;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .icon {
   width: 60;
@@ -79,8 +90,10 @@
 .card4 {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-content: center;
+  align-items: center;
+  align-self: center;
 }
 .lefter {
   margin-left: 20px;
@@ -90,4 +103,10 @@
 }
 .red {
   background-color: rgb(240, 17, 17);
+}
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
 }

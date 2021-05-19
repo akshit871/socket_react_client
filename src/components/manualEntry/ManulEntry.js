@@ -13,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 import CheckCircleOutlineOutlinedIcon from "@material-ui/icons/CheckCircleOutlineOutlined";
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
-
+import { Alert, AlertTitle } from "@material-ui/lab";
 import { dateGet } from "../../utility/helper";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://127.0.0.1:4001";
@@ -71,6 +71,7 @@ export const ManulEntry = ({
   bushDone = () => {},
   fillStore = () => {},
   fillRows = () => {},
+  fillErr = () => {},
 }) => {
   const [open, setopen] = useState(false);
   const [mcd, setmcd] = useState("");
@@ -85,9 +86,13 @@ export const ManulEntry = ({
   const handleClickSend = () => {
     if (mcd.length && mcn.length && psno.length) {
       let curDt = mcd;
-      let err2 = [];
+      let err2 = "";
       if (curDt.length < 6) {
-        err.push("date must be of 6 integers");
+        err2 = "date must be of 6 integers";
+        fillErr(err2);
+        let idt = setTimeout(() => {
+          fillErr("");
+        }, 3000);
         return;
       }
       let dt = new Date().getDate();
@@ -97,37 +102,69 @@ export const ManulEntry = ({
       let t3 = curDt.toString().substr(4, 2);
 
       if (t3 > year) {
-        err.push("year must be less than current year");
+        err2 = "year must be less than current year";
         return;
       }
       if (mcn.toString().length > 2) {
-        err.push("Machine No cant be more than 2 digits");
+        err2.push("Machine No cant be more than 2 digits");
         return;
       }
 
-      setopen(true); //loading state true
-      fillStore({}); //emptying midsection before call
-      const socket = socketIOClient(ENDPOINT);
-      socket.emit("mnl_entry", {
-        operator_name: user,
-        machine_date: mcd,
-        machine_no: mcn,
-        part_sno: psno,
-        bushIV_no: bush ? bin : "",
-        bushIV_dt: bush ? bid : "",
-      });
-      socket.on("processDone", (data) => {
-        console.log({ data });
-        setopen(false);
-        setmcd("");
-        setmcn("");
-        setpsno("");
-        setbin("");
-        setbid("");
-        fillStore(data);
-        fillRows(data);
-        socket.disconnect();
-      });
+      if (bush) {
+        if (bid.length && bin.length) {
+          setopen(true); //loading state true
+          fillStore({}); //emptying midsection before call
+          const socket = socketIOClient(ENDPOINT);
+          socket.emit("mnl_entry", {
+            operator_name: user,
+            machine_date: mcd,
+            machine_no: mcn,
+            part_sno: psno,
+            bushIV_no: bin,
+            bushIV_dt: bid,
+            model: model,
+          });
+          socket.on("processDone", (data) => {
+            console.log({ data });
+            setopen(false);
+            setmcd("");
+            setmcn("");
+            setpsno("");
+            setbin("");
+            setbid("");
+            fillStore(data);
+            fillRows(data);
+            // socket.disconnect();
+          });
+        } else {
+          console.log("every entry required");
+        }
+      } else {
+        setopen(true); //loading state true
+        fillStore({}); //emptying midsection before call
+        const socket = socketIOClient(ENDPOINT);
+        socket.emit("mnl_entry", {
+          operator_name: user,
+          machine_date: mcd,
+          machine_no: mcn,
+          part_sno: psno,
+          bushIV_no: "",
+          bushIV_dt: "",
+          model: model,
+        });
+        socket.on("processDone", (data) => {
+          console.log({ data });
+          setopen(false);
+          setmcd("");
+          setmcn("");
+          setpsno("");
+          setbin("");
+          setbid("");
+          fillStore(data);
+          fillRows(data);
+          socket.disconnect();
+        });
+      }
     } else {
       seterr("Please enter the details first");
     }
@@ -253,7 +290,7 @@ export const ManulEntry = ({
           open={open}
           onClick={handleClose}
         >
-          <CircularProgress color="primary" />
+          <CircularProgress color="secondary" />
         </Backdrop>
       }
     </div>
@@ -270,6 +307,7 @@ const mapDispatchToProps = (dispatch) => {
     bushDone: (data) => dispatch({ type: "BUSH_D", payload: data }),
     fillStore: (data) => dispatch({ type: "UPDATE_STORE", payload: data }),
     fillRows: (data) => dispatch({ type: "UPDATE_ROW", payload: data }),
+    fillErr: (data) => dispatch({ type: "ER", payload: data }),
   };
 };
 

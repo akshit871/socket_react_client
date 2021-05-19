@@ -42,6 +42,11 @@ const useStyles = makeStyles(
 const StyledTextField = withStyles((theme) => ({
   root: {
     // width: 100,
+    border: `2px groove darkblue`,
+    borderRadius: 9,
+    boxShadow: `rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset`,
     "& .MuiInputBase-root": {
       color: "black",
       height: 30,
@@ -76,12 +81,11 @@ export const Mid = ({
   const [mnlscanner, setmnlscanner] = useState(() => {
     return dot ? dot : "";
   });
-  const [ok, setok] = useState(() => {
-    return okf ? okf == true : "";
-  });
-  const [nok, setnok] = useState(() => {
-    return nokf ? nokf == false : "";
-  });
+
+  const [ok, setok] = useState(okf ? okf : null);
+
+  const [nok, setnok] = useState(nokf ? nokf : null);
+
   const [psno, setpsno] = useState(() => {
     return part_sno ? part_sno : "";
   });
@@ -198,83 +202,49 @@ export const Mid = ({
             fullWidth
             inputProps={{ style: { fontSize: 30, fontWeight: 500 } }} // font size of input text.
             // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
-            className={`${scannerdt ? style.laser : ""} laser`}
           />
         </div>
-        <div className={`${style.card1} ${style.lefter}`}>
-          <div className={style.heading_card}>
-            <label style={{ marginTop: "10px", marginBottom: "10px" }}>
-              <strong>Part Sno</strong>
+        <div className={style.btns}>
+          <div
+            className={`${style.okheading_card} ${style.okcard} ${
+              ok ? style.green : ""
+            }`}
+          >
+            <label style={{ marginTop: "5px" }}>
+              <strong>Marked OK</strong>
             </label>
-            {psno && (
-              <IconButton className={classes.yesbtn}>
+            {ok && (
+              <IconButton className={classes.yesbtn2}>
                 <CheckCircleOutlineOutlinedIcon className={classes.largeIcon} />
               </IconButton>
             )}
 
-            {!psno && (
-              <IconButton className={classes.nobtn}>
+            {!ok && (
+              <IconButton className={classes.nobtn2}>
                 <CancelOutlinedIcon />
               </IconButton>
             )}
           </div>
-          <StyledTextField
-            id="outlined-basic121"
-            variant="outlined"
-            autoComplete="off"
-            InputProps={{
-              readOnly: true,
-            }}
-            size="medium"
-            value={psno}
-            fullWidth
-            inputProps={{ style: { fontSize: 30, fontWeight: 600 } }} // font size of input text.
-            // InputLabelProps={{style: {fontSize: 30}}} // font size of input label.
-            className={`${scannerdt ? style.laser : ""} laser`}
-          />
-        </div>
-      </div>
+          <div
+            className={`${style.okheading_card} ${style.nokcard} ${
+              nok ? style.red : ""
+            }`}
+          >
+            <label style={{ marginTop: "5px" }}>
+              <strong>Marked NG</strong>
+            </label>
+            {nok && (
+              <IconButton className={classes.yesbtn2}>
+                <CheckCircleOutlineOutlinedIcon className={classes.largeIcon} />
+              </IconButton>
+            )}
 
-      <div className={style.card4}>
-        <div
-          className={`${style.okheading_card} ${style.okcard} ${
-            ok ? style.green : ""
-          }`}
-        >
-          <label style={{ marginTop: "5px" }}>
-            <strong>Marked OK</strong>
-          </label>
-          {ok && (
-            <IconButton className={classes.yesbtn2}>
-              <CheckCircleOutlineOutlinedIcon className={classes.largeIcon} />
-            </IconButton>
-          )}
-
-          {!ok && (
-            <IconButton className={classes.nobtn2}>
-              <CancelOutlinedIcon />
-            </IconButton>
-          )}
-        </div>
-        <div
-          className={`${style.okheading_card} ${style.nokcard} ${
-            nok ? style.red : ""
-          }`}
-        >
-          <label style={{ marginTop: "10px", marginBottom: "10px" }}>
-            <strong>Marked NG</strong>
-          </label>
-          {nok && (
-            <IconButton className={classes.yesbtn2}>
-              <CheckCircleOutlineOutlinedIcon className={classes.largeIcon} />
-            </IconButton>
-          )}
-
-          {!nok && (
-            <IconButton className={classes.nobtn2}>
-              <CancelOutlinedIcon />
-            </IconButton>
-          )}
+            {!nok && (
+              <IconButton className={classes.nobtn2}>
+                <CancelOutlinedIcon />
+              </IconButton>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -169,13 +169,13 @@ const useStyles = makeStyles(
   {
     root: {
       width: "99vw",
-      padding: "10px",
+      padding: "5px",
     },
     container: {
       width: "99%",
       maxHeight: 440,
-      borderRadius: "20px",
-      border: `1px solid black`,
+      borderRadius: "10px",
+      border: `1px groove black`,
     },
   },
   { index: 1 }
@@ -200,7 +200,7 @@ function StickyHeadTable({ rows = [] }) {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (

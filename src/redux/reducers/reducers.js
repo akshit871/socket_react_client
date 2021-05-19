@@ -177,6 +177,22 @@ const hwRd = (state = init, { type, payload }) => {
   }
 };
 
+//error reducers
+const initErr = {
+  msg: "",
+};
+const errRd = (state = initErr, { type, payload }) => {
+  switch (type) {
+    case types.ER:
+      return {
+        ...state,
+        msg: payload,
+      };
+    default:
+      return state;
+  }
+};
+
 // COMBINED REDUCERS
 const reducers = {
   // counter: counterReducer,
@@ -187,6 +203,7 @@ const reducers = {
   rowRd,
   loginRd,
   hwRd,
+  errRd,
 };
 
 export default combineReducers(reducers);

@@ -8,10 +8,10 @@
   align-content: center;
   margin-top: 200px;
   align-items: center;
-  border: 1px solid rgb(111, 111, 226);
+  border: 5px groove rgb(111, 111, 226);
   border-radius: 30px;
-  box-shadow: 5px 5px 5px 6px rgba(0, 0, 0, 0.2);
   background-color: #dbf8ff;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 .parent {
   display: flex;
@@ -32,6 +32,7 @@
   color: white;
   font-weight: 800;
   background-color: rgb(36, 35, 35);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 .flex_row {
   display: flex;
